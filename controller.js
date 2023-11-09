@@ -10,7 +10,9 @@ function launcher() {
 
     // POST tests
     console.log("START of POST tests");
-    // TODO
+    save();
+    saveWithViolatingPayloadValidations();
+    postWithServerError();
     console.log("END of POST tests");
     console.log("#############################################################################");
 
