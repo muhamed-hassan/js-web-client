@@ -18,7 +18,8 @@ function launcher() {
 
     // DELETE tests
     console.log("START of DELETE tests");
-    // TODO
+    deleteById();
+    deleteWithServerError();
     console.log("END of DELETE tests");
     console.log("#############################################################################");
 

@@ -27,12 +27,20 @@ function doPost(requestUrl, requestHeaders, requestPayload) {
         }
     }
     xhttp.send(requestPayload);
+
+    if (xhttp.status != 201) {
+        throw "ERROR with: " + xhttp.statusText;
+    }
 }
 
 function doDelete(requestUrl) {
     var xhttp = new XMLHttpRequest();
     xhttp.open("DELETE", requestUrl, false);
     xhttp.send();
+
+    if (xhttp.status != 204) {
+        throw "ERROR with: " + xhttp.statusText;
+    }
 }
 
 function doPut(requestUrl, requestHeaders, requestPayload) {
@@ -44,6 +52,10 @@ function doPut(requestUrl, requestHeaders, requestPayload) {
         }
     }
     xhttp.send(requestPayload);
+
+    if (xhttp.status != 204) {
+        throw "ERROR with: " + xhttp.statusText;
+    }
 }
 
 
