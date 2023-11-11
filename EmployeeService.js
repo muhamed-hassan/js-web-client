@@ -74,7 +74,7 @@ function saveWithViolatingPayloadValidations() {
         newEmployee.name = "";
         newEmployee.title = "sample title";
         var requestPayload = JSON.stringify(newEmployee);
-        console.log("EmployeeService.save() requestPayload:: " + requestPayload);
+        console.log("EmployeeService.saveWithViolatingPayloadValidations() requestPayload:: " + requestPayload);
         doPost("http://localhost:8080/v2/employees", requestHeaders, requestPayload);
     } catch (error) {
         console.error("Encountered an error during communicating with the backend. SOURCE::EmployeeService.saveWithViolatingPayloadValidations()");
@@ -117,4 +117,54 @@ function deleteWithServerError() {
         console.error("Encountered an error during communicating with the backend. SOURCE::EmployeeService.deleteWithServerError()");
         console.error(error + "\n\n");        
     }
+}
+
+/* ****************************************************************************************************************** */
+/* ****************************************************************************************************************** */
+
+function updateById() {
+    try {       
+        var requestHeaders = new Map();
+        requestHeaders.set("Content-type", "application/json");
+        var newEmployee = new NewEmployee();
+        newEmployee.name = "sample name";
+        newEmployee.title = "sample title";
+        var requestPayload = JSON.stringify(newEmployee);
+        console.log("EmployeeService.updateById() requestPayload:: " + requestPayload);
+        doPut("http://localhost:8080/v2/employees/91", requestHeaders, requestPayload);
+    } catch (error) {
+        console.error("Encountered an error during communicating with the backend. SOURCE::EmployeeService.updateById()");
+        console.error(error + "\n\n");        
+    }
+}
+
+function updateByIdWithViolatingPayloadValidations() {
+    try {       
+        var requestHeaders = new Map();
+        requestHeaders.set("Content-type", "application/json");
+        var newEmployee = new NewEmployee();
+        newEmployee.name = "";
+        newEmployee.title = "sample title";
+        var requestPayload = JSON.stringify(newEmployee);
+        console.log("EmployeeService.updateByIdWithViolatingPayloadValidations() requestPayload:: " + requestPayload);
+        doPut("http://localhost:8080/v2/employees/91", requestHeaders, requestPayload);
+    } catch (error) {
+        console.error("Encountered an error during communicating with the backend. SOURCE::EmployeeService.updateByIdWithViolatingPayloadValidations()");
+        console.error(error + "\n\n");        
+    }
+}
+
+function putWithServerError() {
+    try {       
+        var requestHeaders = new Map();
+        requestHeaders.set("Content-type", "application/json");
+        var newEmployee = new NewEmployee();
+        newEmployee.name = "sample name";
+        newEmployee.title = "sample title";
+        var requestPayload = JSON.stringify(newEmployee);
+        doPut("http://localhost:8080/v2/employees/server_error", requestHeaders, requestPayload);
+    } catch (error) {
+        console.error("Encountered an error during communicating with the backend. SOURCE::EmployeeService.putWithServerError()");
+        console.error(error + "\n\n");        
+    }    
 }

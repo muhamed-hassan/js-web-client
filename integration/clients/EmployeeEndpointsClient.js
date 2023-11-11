@@ -1,11 +1,7 @@
 function doGet(requestUrl, requestHeaders) {
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET", requestUrl, false);
-    if (requestHeaders != null) {
-        for (var entry of requestHeaders.entries()) {
-            xhttp.setRequestHeader(entry[0], entry[1]);        
-        }
-    }
+    fillRequestHeaders(requestHeaders, xhttp);
     xhttp.send();
 
     var response;
@@ -21,11 +17,7 @@ function doGet(requestUrl, requestHeaders) {
 function doPost(requestUrl, requestHeaders, requestPayload) {
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", requestUrl, false);
-    if (requestHeaders != null) {
-        for (var entry of requestHeaders.entries()) {
-            xhttp.setRequestHeader(entry[0], entry[1]);        
-        }
-    }
+    fillRequestHeaders(requestHeaders, xhttp);
     xhttp.send(requestPayload);
 
     if (xhttp.status != 201) {
@@ -46,11 +38,7 @@ function doDelete(requestUrl) {
 function doPut(requestUrl, requestHeaders, requestPayload) {
     var xhttp = new XMLHttpRequest();
     xhttp.open("PUT", requestUrl, false);
-    if (requestHeaders != null) {
-        for (var entry of requestHeaders.entries()) {
-            xhttp.setRequestHeader(entry[0], entry[1]);        
-        }
-    }
+    fillRequestHeaders(requestHeaders, xhttp);
     xhttp.send(requestPayload);
 
     if (xhttp.status != 204) {
@@ -58,4 +46,12 @@ function doPut(requestUrl, requestHeaders, requestPayload) {
     }
 }
 
+/* ****************************************************************************************************************** */
 
+function fillRequestHeaders(requestHeaders, xhttp) {
+    if (requestHeaders != null) {
+        for (var entry of requestHeaders.entries()) {
+            xhttp.setRequestHeader(entry[0], entry[1]);
+        }
+    }
+}

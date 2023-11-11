@@ -25,7 +25,9 @@ function launcher() {
 
     // PUT tests
     console.log("START of PUT tests");
-    // TODO
+    updateById();
+    updateByIdWithViolatingPayloadValidations();
+    putWithServerError();
     console.log("END of PUT tests");
     console.log("#############################################################################");
 }
