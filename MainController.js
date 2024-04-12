@@ -1,43 +1,46 @@
+
 function launcher() {    
+
+    var employeeResourceClient = new EmployeeResourceClient();
  
     // GET tests
     var collectedOutput = "<div style=\"font-weight: bold;\">START of GET tests</div>";
-    var outputOfFindById = findById();
+    var outputOfFindById = employeeResourceClient.findById();
     collectedOutput += "<div style=\"margin-left: 20px;\">> " + outputOfFindById + "</div>";
-    var outputOfFindByPage = findByPage();
+    var outputOfFindByPage = employeeResourceClient.findByPage();
     collectedOutput += "<div style=\"margin-left: 20px;\">> " + outputOfFindByPage + "</div>";
-    var outputOfGetWithServerError = getWithServerError();
+    var outputOfGetWithServerError = employeeResourceClient.getWithServerError();
     collectedOutput += "<div style=\"color: red; margin-left: 20px;\">> " + outputOfGetWithServerError + "</div>";
     collectedOutput += "<div style=\"font-weight: bold;\">END of GET tests</div>";
     collectedOutput += "<div style=\"font-weight: bold;\">#############################################################################</div>";
     
     // POST tests    
     collectedOutput += "<div style=\"font-weight: bold; margin-top: 5px;\">START of POST tests</div>";
-    var outputOfSave = save();
+    var outputOfSave = employeeResourceClient.save();
     collectedOutput += "<div style=\"margin-left: 20px;\">> " + outputOfSave + "</div>";
-    var outputOfSaveWithViolatingPayloadValidations = saveWithViolatingPayloadValidations();
+    var outputOfSaveWithViolatingPayloadValidations = employeeResourceClient.saveWithViolatingPayloadValidations();
     collectedOutput += "<div style=\"color: red; margin-left: 20px;\">> " + outputOfSaveWithViolatingPayloadValidations + "</div>";
-    var outputOfPostWithServerError = postWithServerError();
+    var outputOfPostWithServerError = employeeResourceClient.postWithServerError();
     collectedOutput += "<div style=\"color: red; margin-left: 20px;\">> " + outputOfPostWithServerError + "</div>";
     collectedOutput += "<div style=\"font-weight: bold;\">END of POST tests</div>";
     collectedOutput += "<div style=\"font-weight: bold;\">#############################################################################</div>";
     
     // DELETE tests
     collectedOutput += "<div style=\"font-weight: bold; margin-top: 5px;\">START of DELETE tests</div>";
-    var outputOfDeleteById = deleteById();
+    var outputOfDeleteById = employeeResourceClient.deleteById();
     collectedOutput += "<div style=\"margin-left: 20px;\">> " + outputOfDeleteById + "</div>";
-    var outputOfDeleteWithServerError = deleteWithServerError();
+    var outputOfDeleteWithServerError = employeeResourceClient.deleteWithServerError();
     collectedOutput += "<div style=\"color: red; margin-left: 20px;\">> " + outputOfDeleteWithServerError + "</div>";
     collectedOutput += "<div style=\"font-weight: bold;\">END of DELETE tests</div>";
     collectedOutput += "<div style=\"font-weight: bold;\">#############################################################################</div>";
 
     // PUT tests
     collectedOutput += "<div style=\"font-weight: bold; margin-top: 5px;\">START of PUT tests</div>";
-    var outputOfUpdateById = updateById();
+    var outputOfUpdateById = employeeResourceClient.updateById();
     collectedOutput += "<div style=\"margin-left: 20px;\">> " + outputOfUpdateById + "</div>";
-    var outputOfUpdateByIdWithViolatingPayloadValidations = updateByIdWithViolatingPayloadValidations();
+    var outputOfUpdateByIdWithViolatingPayloadValidations = employeeResourceClient.updateByIdWithViolatingPayloadValidations();
     collectedOutput += "<div style=\"color: red; margin-left: 20px;\">> " + outputOfUpdateByIdWithViolatingPayloadValidations + "</div>";
-    var outputOfPutWithServerError = putWithServerError();
+    var outputOfPutWithServerError = employeeResourceClient.putWithServerError();
     collectedOutput += "<div style=\"color: red; margin-left: 20px;\">> " + outputOfPutWithServerError + "</div>";
     collectedOutput += "<div style=\"font-weight: bold;\">END of PUT tests</div>";
     collectedOutput += "<div style=\"font-weight: bold;\">#############################################################################</div>";

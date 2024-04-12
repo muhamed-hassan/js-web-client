@@ -1,3 +1,4 @@
+
 class NewEmployee extends Employee {
 
     constructor(name, title) {
