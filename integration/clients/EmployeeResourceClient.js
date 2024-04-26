@@ -3,6 +3,7 @@ class EmployeeResourceClient {
 
     constructor() {
         this.httpClient = new HttpClient();
+        this.apiConfigs = new ApiConfigs();
     }
 
     findById() {    
@@ -10,7 +11,8 @@ class EmployeeResourceClient {
         try {       
             var requestHeaders = new Map();
             requestHeaders.set("Accept", "application/json");
-            response = this.httpClient.doGet("http://localhost:8080/v2/employees/1", requestHeaders);        
+            response = this.httpClient.doGet(this.apiConfigs.getDnsHost() + this.apiConfigs.getEmployeesApiPath() + "/1", 
+                                                requestHeaders);        
             var parsedResponse = JSON.parse(response);
             var savedEmployee = new SavedEmployee();
             savedEmployee.id = parsedResponse.id;
@@ -30,7 +32,8 @@ class EmployeeResourceClient {
         try {       
             var requestHeaders = new Map();
             requestHeaders.set("Accept", "application/json");
-            response = this.httpClient.doGet("http://localhost:8080/v2/employees?pageNumber=1&pageSize=10", requestHeaders);        
+            response = this.httpClient.doGet(this.apiConfigs.getDnsHost() + this.apiConfigs.getEmployeesApiPath() + "?pageNumber=1&pageSize=10", 
+                                                requestHeaders);        
             var parsedResponse = JSON.parse(response);
             var collectedElements = new Array();
             for (var cursor = 0; cursor < parsedResponse.length; cursor++) {
@@ -53,7 +56,8 @@ class EmployeeResourceClient {
         try {       
             var requestHeaders = new Map();
             requestHeaders.set("Accept", "application/json");
-            this.httpClient.doGet("http://localhost:8080/v2/employees/server_error", requestHeaders);
+            this.httpClient.doGet(this.apiConfigs.getDnsHost() + this.apiConfigs.getEmployeesApiPath() + "/server_error", 
+                                    requestHeaders);
         } catch (error) {
             var errMsg = "Encountered an error during communicating with the backend. SOURCE::EmployeeResourceClient.getWithServerError()";
             console.error(errMsg);
@@ -74,7 +78,8 @@ class EmployeeResourceClient {
             newEmployee.name = "sample name";
             newEmployee.title = "sample title";
             requestPayload = JSON.stringify(newEmployee);
-            this.httpClient.doPost("http://localhost:8080/v2/employees", requestHeaders, requestPayload);
+            this.httpClient.doPost(this.apiConfigs.getDnsHost() + this.apiConfigs.getEmployeesApiPath(), 
+                                    requestHeaders, requestPayload);
         } catch (error) {
             var errMsg = "Encountered an error during communicating with the backend. SOURCE::EmployeeResourceClient.save()";
             console.error(errMsg);
@@ -93,7 +98,8 @@ class EmployeeResourceClient {
             newEmployee.name = "";
             newEmployee.title = "sample title";
             requestPayload = JSON.stringify(newEmployee);
-            this.httpClient.doPost("http://localhost:8080/v2/employees", requestHeaders, requestPayload);
+            this.httpClient.doPost(this.apiConfigs.getDnsHost() + this.apiConfigs.getEmployeesApiPath(), 
+                                    requestHeaders, requestPayload);
         } catch (error) {
             var errMsg = "Encountered an error during communicating with the backend. SOURCE::EmployeeResourceClient.saveWithViolatingPayloadValidations()";
             console.error(errMsg);
@@ -110,7 +116,8 @@ class EmployeeResourceClient {
             newEmployee.name = "sample name";
             newEmployee.title = "sample title";
             var requestPayload = JSON.stringify(newEmployee);
-            this.httpClient.doPost("http://localhost:8080/v2/employees/server_error", requestHeaders, requestPayload);
+            this.httpClient.doPost(this.apiConfigs.getDnsHost() + this.apiConfigs.getEmployeesApiPath() + "/server_error", 
+                                    requestHeaders, requestPayload);
         } catch (error) {
             var errMsg = "Encountered an error during communicating with the backend. SOURCE::EmployeeResourceClient.postWithServerError()";
             console.error(errMsg);
@@ -124,7 +131,7 @@ class EmployeeResourceClient {
     
     deleteById() {
         try {       
-            this.httpClient.doDelete("http://localhost:8080/v2/employees/51");
+            this.httpClient.doDelete(this.apiConfigs.getDnsHost() + this.apiConfigs.getEmployeesApiPath() + "/51");
         } catch (error) {
             var errMsg = "Encountered an error during communicating with the backend. SOURCE::EmployeeResourceClient.deleteById()";
             console.error(errMsg);
@@ -136,7 +143,7 @@ class EmployeeResourceClient {
     
     deleteWithServerError() {
         try {       
-            this.httpClient.doDelete("http://localhost:8080/v2/employees/server_error");
+            this.httpClient.doDelete(this.apiConfigs.getDnsHost() + this.apiConfigs.getEmployeesApiPath() + "/server_error");
         } catch (error) {
             var errMsg = "Encountered an error during communicating with the backend. SOURCE::EmployeeResourceClient.deleteWithServerError()";
             console.error(errMsg);
@@ -157,7 +164,8 @@ class EmployeeResourceClient {
             newEmployee.name = "sample name";
             newEmployee.title = "sample title";
             requestPayload = JSON.stringify(newEmployee);
-            this.httpClient.doPut("http://localhost:8080/v2/employees/91", requestHeaders, requestPayload);
+            this.httpClient.doPut(this.apiConfigs.getDnsHost() + this.apiConfigs.getEmployeesApiPath() + "/91", 
+                                    requestHeaders, requestPayload);
         } catch (error) {
             var errMsg = "Encountered an error during communicating with the backend. SOURCE::EmployeeResourceClient.updateById()";
             console.error(errMsg);
@@ -175,7 +183,8 @@ class EmployeeResourceClient {
             newEmployee.name = "";
             newEmployee.title = "sample title";
             var requestPayload = JSON.stringify(newEmployee);
-            this.httpClient.doPut("http://localhost:8080/v2/employees/91", requestHeaders, requestPayload);
+            this.httpClient.doPut(this.apiConfigs.getDnsHost() + this.apiConfigs.getEmployeesApiPath() + "/91", 
+                                    requestHeaders, requestPayload);
         } catch (error) {
             var errMsg = "Encountered an error during communicating with the backend. SOURCE::EmployeeResourceClient.updateByIdWithViolatingPayloadValidations()";
             console.error(errMsg);
@@ -192,7 +201,8 @@ class EmployeeResourceClient {
             newEmployee.name = "sample name";
             newEmployee.title = "sample title";
             var requestPayload = JSON.stringify(newEmployee);
-            this.httpClient.doPut("http://localhost:8080/v2/employees/server_error", requestHeaders, requestPayload);
+            this.httpClient.doPut(this.apiConfigs.getDnsHost() + this.apiConfigs.getEmployeesApiPath() + "/server_error", 
+                                    requestHeaders, requestPayload);
         } catch (error) {
             var errMsg = "Encountered an error during communicating with the backend. SOURCE::EmployeeResourceClient.putWithServerError()";
             console.error(errMsg);

@@ -3,7 +3,7 @@ class HttpClient {
     
     doGet(requestUrl, requestHeaders) {
         var xhttp = new XMLHttpRequest();
-        xhttp.open("GET", requestUrl, false);
+        xhttp.open("GET", this.getUrlProtocol() + requestUrl, false);
         this.fillRequestHeaders(requestHeaders, xhttp);
         xhttp.send();
     
@@ -19,7 +19,7 @@ class HttpClient {
     
     doPost(requestUrl, requestHeaders, requestPayload) {
         var xhttp = new XMLHttpRequest();
-        xhttp.open("POST", requestUrl, false);
+        xhttp.open("POST", this.getUrlProtocol() + requestUrl, false);
         this.fillRequestHeaders(requestHeaders, xhttp);
         xhttp.send(requestPayload);
     
@@ -30,7 +30,7 @@ class HttpClient {
     
     doDelete(requestUrl) {
         var xhttp = new XMLHttpRequest();
-        xhttp.open("DELETE", requestUrl, false);
+        xhttp.open("DELETE", this.getUrlProtocol() + requestUrl, false);
         xhttp.send();
     
         if (xhttp.status != 204) {
@@ -40,7 +40,7 @@ class HttpClient {
     
     doPut(requestUrl, requestHeaders, requestPayload) {
         var xhttp = new XMLHttpRequest();
-        xhttp.open("PUT", requestUrl, false);
+        xhttp.open("PUT", this.getUrlProtocol() + requestUrl, false);
         this.fillRequestHeaders(requestHeaders, xhttp);
         xhttp.send(requestPayload);
     
@@ -57,6 +57,10 @@ class HttpClient {
                 xhttp.setRequestHeader(entry[0], entry[1]);
             }
         }
+    }
+
+    getUrlProtocol() {
+        return "http://";
     }
 
 }
