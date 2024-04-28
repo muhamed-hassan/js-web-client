@@ -4,48 +4,52 @@ function launcher() {
     var employeeResourceClient = new EmployeeResourceClient();
  
     // GET tests
-    var collectedOutput = "<div style=\"font-weight: bold;\">START of GET tests</div>";
+    var collectedOutput = "<div class=\"tests-package-container\">START of GET tests</div>";
     var outputOfFindById = employeeResourceClient.findById();
-    collectedOutput += "<div style=\"margin-left: 20px;\">> " + outputOfFindById + "</div>";
+    collectedOutput += "<div class=\"correct-response\">> " + outputOfFindById + "</div>";
     var outputOfFindByPage = employeeResourceClient.findByPage();
-    collectedOutput += "<div style=\"margin-left: 20px;\">> " + outputOfFindByPage + "</div>";
+    collectedOutput += "<div class=\"correct-response\">> " + outputOfFindByPage + "</div>";
     var outputOfGetWithServerError = employeeResourceClient.getWithServerError();
-    collectedOutput += "<div style=\"color: red; margin-left: 20px;\">> " + outputOfGetWithServerError + "</div>";
-    collectedOutput += "<div style=\"font-weight: bold;\">END of GET tests</div>";
-    collectedOutput += "<div style=\"font-weight: bold;\">#############################################################################</div>";
+    collectedOutput += "<div class=\"wrong-response\">> " + outputOfGetWithServerError + "</div>";
+    collectedOutput += "<div class=\"tests-package-container\">END of GET tests</div>";
+
+    collectedOutput += "<div class=\"tests-separator\">#############################################################################</div>";
     
     // POST tests    
-    collectedOutput += "<div style=\"font-weight: bold; margin-top: 5px;\">START of POST tests</div>";
+    collectedOutput += "<div class=\"tests-package-container\">START of POST tests</div>";
     var outputOfSave = employeeResourceClient.save();
-    collectedOutput += "<div style=\"margin-left: 20px;\">> " + outputOfSave + "</div>";
+    collectedOutput += "<div class=\"correct-response\">> " + outputOfSave + "</div>";
     var outputOfSaveWithViolatingPayloadValidations = employeeResourceClient.saveWithViolatingPayloadValidations();
-    collectedOutput += "<div style=\"color: red; margin-left: 20px;\">> " + outputOfSaveWithViolatingPayloadValidations + "</div>";
+    collectedOutput += "<div class=\"wrong-response\">> " + outputOfSaveWithViolatingPayloadValidations + "</div>";
     var outputOfPostWithServerError = employeeResourceClient.postWithServerError();
-    collectedOutput += "<div style=\"color: red; margin-left: 20px;\">> " + outputOfPostWithServerError + "</div>";
-    collectedOutput += "<div style=\"font-weight: bold;\">END of POST tests</div>";
-    collectedOutput += "<div style=\"font-weight: bold;\">#############################################################################</div>";
+    collectedOutput += "<div class=\"wrong-response\">> " + outputOfPostWithServerError + "</div>";
+    collectedOutput += "<div class=\"tests-package-container\">END of POST tests</div>";
+
+    collectedOutput += "<div class=\"tests-separator\">#############################################################################</div>";
     
     // DELETE tests
-    collectedOutput += "<div style=\"font-weight: bold; margin-top: 5px;\">START of DELETE tests</div>";
+    collectedOutput += "<div class=\"tests-package-container\">START of DELETE tests</div>";
     var outputOfDeleteById = employeeResourceClient.deleteById();
-    collectedOutput += "<div style=\"margin-left: 20px;\">> " + outputOfDeleteById + "</div>";
+    collectedOutput += "<div class=\"correct-response\">> " + outputOfDeleteById + "</div>";
     var outputOfDeleteWithServerError = employeeResourceClient.deleteWithServerError();
-    collectedOutput += "<div style=\"color: red; margin-left: 20px;\">> " + outputOfDeleteWithServerError + "</div>";
-    collectedOutput += "<div style=\"font-weight: bold;\">END of DELETE tests</div>";
-    collectedOutput += "<div style=\"font-weight: bold;\">#############################################################################</div>";
+    collectedOutput += "<div class=\"wrong-response\">> " + outputOfDeleteWithServerError + "</div>";
+    collectedOutput += "<div class=\"tests-package-container\">END of DELETE tests</div>";
+
+    collectedOutput += "<div class=\"tests-separator\">#############################################################################</div>";
 
     // PUT tests
-    collectedOutput += "<div style=\"font-weight: bold; margin-top: 5px;\">START of PUT tests</div>";
+    collectedOutput += "<div class=\"tests-package-container\">START of PUT tests</div>";
     var outputOfUpdateById = employeeResourceClient.updateById();
-    collectedOutput += "<div style=\"margin-left: 20px;\">> " + outputOfUpdateById + "</div>";
+    collectedOutput += "<div class=\"correct-response\">> " + outputOfUpdateById + "</div>";
     var outputOfUpdateByIdWithViolatingPayloadValidations = employeeResourceClient.updateByIdWithViolatingPayloadValidations();
-    collectedOutput += "<div style=\"color: red; margin-left: 20px;\">> " + outputOfUpdateByIdWithViolatingPayloadValidations + "</div>";
+    collectedOutput += "<div class=\"wrong-response\">> " + outputOfUpdateByIdWithViolatingPayloadValidations + "</div>";
     var outputOfPutWithServerError = employeeResourceClient.putWithServerError();
-    collectedOutput += "<div style=\"color: red; margin-left: 20px;\">> " + outputOfPutWithServerError + "</div>";
-    collectedOutput += "<div style=\"font-weight: bold;\">END of PUT tests</div>";
-    collectedOutput += "<div style=\"font-weight: bold;\">#############################################################################</div>";
+    collectedOutput += "<div class=\"wrong-response\">> " + outputOfPutWithServerError + "</div>";
+    collectedOutput += "<div class=\"tests-package-container\">END of PUT tests</div>";
 
-    collectedOutput += "<div style=\"font-weight: bold; margin-top: 30px;\">Tests are done successfully 🚀</div>";
+    collectedOutput += "<div class=\"tests-separator\">#############################################################################</div>";
+
+    collectedOutput += "<div class=\"result-of-tests\">Tests are done successfully 🚀</div>";
 
     document.getElementById("experimentOutput").innerHTML = collectedOutput;
 }
