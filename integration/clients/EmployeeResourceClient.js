@@ -69,16 +69,38 @@ class EmployeeResourceClient {
     /* ****************************************************************************************************************** */
     /* ****************************************************************************************************************** */
     
+    login() {
+        var username = "ethan_hunt"; 
+        var password = "why_hell_exists???";
+        var authorizationHeader;    
+        try {       
+            var requestHeaders = new Map();
+            requestHeaders.set("Content-type", "application/json");
+            requestHeaders.set("Device-Type", "MOBILE");
+
+            var requestPayload = JSON.stringify(new Credentials(username, password));
+
+            authorizationHeader = this.httpClient.doPostForAuthentication(this.apiConfigs.getDnsHostOfAuthenticationComponent() + 
+                                    this.apiConfigs.getAuthenticateApiPath(), requestHeaders, requestPayload);
+        } catch (error) {
+            var errMsg = "Encountered an error during communicating with the backend. SOURCE::EmployeeResourceClient.login()";
+            console.error(errMsg);
+            console.error(error + "\n\n");
+            return errMsg;
+        }
+        return "EmployeeResourceClient.login() with Authorization-Header:: " + authorizationHeader;
+    }
+
     save() {
-        var requestPayload;
+        var statusText;
         try {       
             var requestHeaders = new Map();
             requestHeaders.set("Content-type", "application/json");
             var newEmployee = new NewEmployee();
             newEmployee.name = "sample name";
             newEmployee.title = "sample title";
-            requestPayload = JSON.stringify(newEmployee);
-            this.httpClient.doPost(this.apiConfigs.getDnsHost() + this.apiConfigs.getEmployeesApiPath(), 
+            var requestPayload = JSON.stringify(newEmployee);
+            statusText = this.httpClient.doPost(this.apiConfigs.getDnsHost() + this.apiConfigs.getEmployeesApiPath(), 
                                     requestHeaders, requestPayload);
         } catch (error) {
             var errMsg = "Encountered an error during communicating with the backend. SOURCE::EmployeeResourceClient.save()";
@@ -86,18 +108,17 @@ class EmployeeResourceClient {
             console.error(error + "\n\n");        
             return errMsg;
         }
-        return "EmployeeResourceClient.save() requestPayload:: " + requestPayload;
+        return "EmployeeResourceClient.save() with HTTP_Status-Code:: " + statusText;
     }
     
     saveWithViolatingPayloadValidations() {
-        var requestPayload;
         try {       
             var requestHeaders = new Map();
             requestHeaders.set("Content-type", "application/json");
             var newEmployee = new NewEmployee();
             newEmployee.name = "";
             newEmployee.title = "sample title";
-            requestPayload = JSON.stringify(newEmployee);
+            var requestPayload = JSON.stringify(newEmployee);
             this.httpClient.doPost(this.apiConfigs.getDnsHost() + this.apiConfigs.getEmployeesApiPath(), 
                                     requestHeaders, requestPayload);
         } catch (error) {
@@ -130,15 +151,16 @@ class EmployeeResourceClient {
     /* ****************************************************************************************************************** */
     
     deleteById() {
+        var statusText;
         try {       
-            this.httpClient.doDelete(this.apiConfigs.getDnsHost() + this.apiConfigs.getEmployeesApiPath() + "/51");
+            statusText = this.httpClient.doDelete(this.apiConfigs.getDnsHost() + this.apiConfigs.getEmployeesApiPath() + "/51");
         } catch (error) {
             var errMsg = "Encountered an error during communicating with the backend. SOURCE::EmployeeResourceClient.deleteById()";
             console.error(errMsg);
             console.error(error + "\n\n");        
             return errMsg;
         }
-        return "Delete is done for employee with ID 51";
+        return "Delete is done for employee with ID 51 with HTTP_Status-Code:: " + statusText;
     }
     
     deleteWithServerError() {
@@ -156,15 +178,15 @@ class EmployeeResourceClient {
     /* ****************************************************************************************************************** */
     
     updateById() {
-        var requestPayload;
+        var statusText;
         try {       
             var requestHeaders = new Map();
             requestHeaders.set("Content-type", "application/json");
             var newEmployee = new NewEmployee();
             newEmployee.name = "sample name";
             newEmployee.title = "sample title";
-            requestPayload = JSON.stringify(newEmployee);
-            this.httpClient.doPut(this.apiConfigs.getDnsHost() + this.apiConfigs.getEmployeesApiPath() + "/91", 
+            var requestPayload = JSON.stringify(newEmployee);
+            statusText = this.httpClient.doPut(this.apiConfigs.getDnsHost() + this.apiConfigs.getEmployeesApiPath() + "/91", 
                                     requestHeaders, requestPayload);
         } catch (error) {
             var errMsg = "Encountered an error during communicating with the backend. SOURCE::EmployeeResourceClient.updateById()";
@@ -172,7 +194,7 @@ class EmployeeResourceClient {
             console.error(error + "\n\n");        
             return errMsg;
         }
-        return "EmployeeResourceClient.updateById() requestPayload:: " + requestPayload;
+        return "EmployeeResourceClient.updateById() with HTTP_Status-Code:: " + statusText;
     }
     
     updateByIdWithViolatingPayloadValidations() {

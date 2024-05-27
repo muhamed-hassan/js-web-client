@@ -17,6 +17,8 @@ function launcher() {
     
     // POST tests    
     collectedOutput += "<div class=\"tests-package-container\">START of POST tests</div>";
+    var outputOfLogin = employeeResourceClient.login();
+    collectedOutput += "<div class=\"correct-response\">> " + outputOfLogin + "</div>";
     var outputOfSave = employeeResourceClient.save();
     collectedOutput += "<div class=\"correct-response\">> " + outputOfSave + "</div>";
     var outputOfSaveWithViolatingPayloadValidations = employeeResourceClient.saveWithViolatingPayloadValidations();
